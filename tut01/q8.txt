@@ -1,0 +1,15 @@
+When should you use:
+
+* fgrep/grep -F
+    - No special characters 
+
+* grep/grep -G
+    - '.' -> '.'
+    - '\.' -> any character 
+
+* egrep/grep -E
+    - '.' -> any character 
+    - '\.' -> '.'
+
+* pgrep/grep -P
+    - find or signal processes by name
