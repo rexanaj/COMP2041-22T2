@@ -9,3 +9,6 @@ https://regex101.com/
 
 A cheatsheet for special characters etc. to get you started:
 https://web.mit.edu/hackl/www/lab/turkshop/slides/regex-cheatsheet.pdf
+
+A cheatsheet for using `sed`: 
+https://lzone.de/cheat-sheet/sed

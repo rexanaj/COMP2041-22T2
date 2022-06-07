@@ -1,0 +1,115 @@
+
+Q1. Consider the following columnar (space-delimited) data file 
+    containing (fictional) contact for various CSE academic staff.
+    The data is currently sorted in phone number order.
+    Can we use the sort filter to re-arrange the data into 
+    telephone-book order?
+    sort -k2,2 q1.txt
+
+
+
+
+
+Q2. Provide a command that would produce each of the following results:
+    a.  Display the first three lines of the file
+        head -n 3 q2.txt
+
+    b.  Display lines belonging to class accounts (assuming that class 
+        accounts have a username that starts with either "cs", "se", 
+        "bi" or "en", followed by four digit)
+        grep -E '^(cs|se|bi|en)\d{4}' q2.txt
+
+    c.  Display the username of everyone whose shell is /bin/bash
+        grep -E '/bin/bash$' q2.txt 
+
+    d.  Create a tab-separated file passwords.txt containing only the 
+        username and password of each user
+        cut -d':' -f1,2 q2.txt | tr ':' '\t' | grep -E '.+\t.+' > passwords.txt
+
+
+
+
+
+Q3. Consider the fairly standard split-into-words technique from the 
+    previous question.
+        tr -cs 'a-zA-Z0-9' '\n' < someFile
+    Explain how this command works.
+    What does each argument do?
+
+
+
+
+
+
+Q4. What is the output of each of the following pipelines?  
+        this is big Big BIG
+        but this is not so big
+
+    a.  tr -d ' ' | wc -w
+        thisisbigBigBIG
+        butthisisnotsobig
+        Expected output: 2
+
+    b.  tr -cs 'a-zA-Z0-9' '\n' | wc -l
+        Expected output: 11
+
+
+    c.  tr -cs 'a-zA-Z0-9' '\n' | tr '[:lower:]' '[:upper:]' | sort | uniq -c
+        Expected output: 
+        4 BIG 
+        1 BUT 
+        .. IS 
+        NOT 
+        SO 
+        THIS 
+
+
+
+
+
+
+
+
+Q5. Consider two files containing (fake) zIDs and marks in COMP1511 and 
+    COMP2041. 
+    a.  Can the files be used as-is with the join command?
+        If not, what needs to be changed?
+        * Common key (zID) needs to be sorted for join to work. 
+
+    b.  Write a join command which prints the marks in COMP1511 and 
+        COMP2041 of everyone who did both courses.
+        join -t'|' q5_1511_sorted.psv q5_2041_sorted.psv
+
+    c.  Write another join command which prints the marks in COMP1511 
+        and COMP2041 of everyone, across both files, with -- in the 
+        case where a student didn't do a particular subject.
+        join -t'|' -a1 -a2 -o'0,1.2,2.2' -e'--' q5_1511_sorted.psv q5_2041_sorted.psv
+
+    d.  Write a shell pipeline which prints the marks in COMP1511 and 
+        COMP2041 of everyone who did both courses, sorted by their 
+        COMP1511 mark in ascending order, then by their COMP2041 mark 
+        in descending order.
+        join -t'|' q5_1511_sorted.psv q5_2041_sorted.psv | sort -t'|' -k2,2 -k3,3r
+
+
+
+
+
+Q6. Consider a file containing tab-separated benchmarking results for 
+    20 programs, in three different benchmarks, all measured in seconds.
+
+    a.  Write a sort command which sorts by the results in the second  
+        benchmark, then by the results in the first benchmark.
+        sort -k3,3 -k2,2 q6.txt
+
+    b.  Write a sort command which sorts by the results in the third 
+        benchmark, then by the program number.
+        sort -k4 -k1.8,1n q6.txt
+
+    c.  Write a sed command which removes the leading zeroes from the 
+        benchmark times.
+        sed -E 's/\t0/\t/g' q6.txt
+
+    d.  Write a sed command which removes the benchmark results from 
+        program2 through program13.
+        sed -E 's/\t0/\t/g' q6.txt
