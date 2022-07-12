@@ -5,9 +5,10 @@ import sys
 print_line_num = False  # `-n` flag
 print_all_chars = False  # `-v` flag
 
-if ...:
-    sys.exit(1)
-    sys.exit(0)
+# Exiting a Python program
+# if ...:
+#     sys.exit(1) # Error
+#     sys.exit(0) # Success
 
 # Check which options are provided
 while len(sys.argv) > 1 and sys.argv[1].startswith('-'):
