@@ -1,0 +1,8 @@
+hello
+world
+these
+words 
+not
+found 
+in 
+file2
