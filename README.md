@@ -12,3 +12,9 @@ https://web.mit.edu/hackl/www/lab/turkshop/slides/regex-cheatsheet.pdf
 
 A cheatsheet for using `sed`: 
 https://lzone.de/cheat-sheet/sed
+  
+  
+  
+### Regex challenges & activities
+https://regex101.com/quiz
+https://alf.nu/RegexGolf
